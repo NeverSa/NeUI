@@ -7,30 +7,18 @@
   </div>
 </template>
 <script>
-
   export default {
     name: 'NeRadioGroup',
     componentName: 'NeRadioGroup',
-    props: {
-      value: {},
-      disabled: Boolean
+     props: {
+        value: { type: [String, Number] },
+        disabled: { type: Boolean }
     },
-
-    computed: {
-    
+     model: {
+      
     },
-
-    created() {
-      this.$on('handleChange', value => {
-        this.$emit('change', value);
-      });
-    },
-    mounted() {
-  
-    },
-    methods: {
-
-    },
+   
+ 
    
   };
 </script>

@@ -1,8 +1,10 @@
-import RadioGroup from '../radio/radio-group';
-
+import NeRadioGroup from '../radio/radio-group';
 /* istanbul ignore next */
-RadioGroup.install = function(Vue) {
-  Vue.component(RadioGroup.name, RadioGroup);
+NeRadioGroup.install = function(Vue) {
+  debugger
+  Vue.component(NeRadioGroup.name, NeRadioGroup);
 };
 
-export default RadioGroup;
+
+
+export  default NeRadioGroup

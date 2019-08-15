@@ -68,6 +68,7 @@
 <script>
 export default {
   name: "NeRadio",
+   componentName: 'NeRadio',
   props: {
       value: {},
       label: {},
@@ -81,7 +82,7 @@ export default {
     isGroup(){
        let parent = this.$parent;
          while (parent) {
-          if (parent.$options.componentName !== 'NeRadioGroup') {
+          if (parent.$options._componentTag !== 'ne-radio-group') {
             parent = parent.$parent;
           } else {
             this._radioGroup = parent;
@@ -92,10 +93,10 @@ export default {
     },
     model: {
       get() {
-        return  this.value
+        return this.isGroup? this.$parent.value:this.value
       },
       set(val) {
-        this.$emit('input', val);
+         this.isGroup ? this.$parent.$emit("input", val) : this.$emit("input", val);
       }
     }
   },
