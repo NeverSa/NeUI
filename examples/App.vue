@@ -16,6 +16,9 @@
         <ne-radio label="1" @change="change()"  >备选项</ne-radio>
         <ne-radio  label="2" @change="change()" >备选项</ne-radio>
     </ne-radio-group>
+
+      <ne-checkbox v-model="radio" label="2" @change="change()"  name="a">备选项</ne-checkbox>
+
   </div>
 </template>
 
