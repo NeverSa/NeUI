@@ -2,7 +2,8 @@ import Button from './button/index.js';
 import Radio from './radio/index.js';
 import RadioGroup from './radio-group/index.js';
 import Checkbox from './Checkbox/index.js';
-const components = [Button, Radio,RadioGroup,Checkbox];
+import CheckboxGroup from './checkbox-group/index.js';
+const components = [Button, Radio,RadioGroup,Checkbox,CheckboxGroup];
 const install = function (Vue, opts = {}) {
     components.forEach(component => {
         Vue.component(component.name, component);
@@ -17,5 +18,6 @@ export default {
     Radio,
     Checkbox,
     RadioGroup,
+    CheckboxGroup,
     install
   };
