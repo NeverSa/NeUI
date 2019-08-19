@@ -2,21 +2,21 @@
     <div>
         <ne-input type="text" v-model="a"  placeholder="测试"></ne-input>
 
-    <NeTabButtonGroup>
- <NeTabButton>
+    <NeTabButtonGroup style="margin-top:40px" v-model="active">
+ <NeTabButton :lable="1">
         <i slot="icon">a</i>
         测试
     </NeTabButton>
-      <NeTabButton>
+      <NeTabButton :lable="2">
         <i slot="icon">a</i>
         测试
     </NeTabButton>
-      <NeTabButton>
+      <NeTabButton :lable="3">
         <i slot="icon">a</i>
         测试
     </NeTabButton>
   
- <NeTabButton>
+ <NeTabButton :lable="4">
         <i slot="icon">a</i>
         现场支持这咋打是
     </NeTabButton>
@@ -31,7 +31,7 @@
 export default {
     data() {
         return {
-            a:"asdad"
+            active:1
         }
     },
 }
