@@ -1,5 +1,5 @@
 <template>
-  <div class="ne-tab-button-group" :style="{'width':widthStyle+'px'}">
+  <div class="ne-tab-button-group" >
     <slot></slot>
   </div>
 
@@ -7,7 +7,8 @@
 
 <style lang="less">
 .ne-tab-button-group {
-  flex-direction: column;
+    display: inline-block;
+flex-direction: row;
   padding: 3px;
   border-radius: 15px;
   background: rgba(242, 242, 242, 1);
@@ -25,17 +26,17 @@ export default {
   props: {},
   data() {
     return {
-        widthStyle:0,
+      
     };
   },
   mounted() {
-    this.$nextTick(() => {
-      for (let i = 0; i < this.$el.children.length; i++) {
-         this.widthStyle += this.$el.children[i].clientWidth + 50;
-         console.log(this.$el.children[i].clientWidth)
-      }
+    // this.$nextTick(() => {
+    //   for (let i = 0; i < this.$el.children.length; i++) {
+    //      this.widthStyle += this.$el.children[i].clientWidth + 50;
+    //      console.log(this.$el.children[i].clientWidth)
+    //   }
     
-    });
+    // });
   },
 
   methods: {}
