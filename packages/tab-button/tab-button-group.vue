@@ -23,23 +23,25 @@ flex-direction: row;
 export default {
   name: "NeTabButtonGroup",
   componentName: "NeTabButtonGroup",
-  props: {},
+  props: {
+    select:String || Number
+  },
+  model:{
+    prop: 'select',
+    event: 'change',
+  },
   data() {
     return {
       
     };
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   for (let i = 0; i < this.$el.children.length; i++) {
-    //      this.widthStyle += this.$el.children[i].clientWidth + 50;
-    //      console.log(this.$el.children[i].clientWidth)
-    //   }
-    
-    // });
+  
   },
 
-  methods: {}
+  methods: {
+   
+  }
 };
 </script>
 
