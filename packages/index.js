@@ -7,7 +7,9 @@ import Input from './input/index.js';
 import TabButton from './tab-button/index.js';
 import TabButtonGroup from './tab-button-group/index.js';
 import Select from './select/index.js';
-const components = [Button, Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select];
+import Option from './select-option/index.js';
+
+const components = [Button, Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
     Vue.component(component.name, component);
@@ -27,5 +29,6 @@ export default {
   TabButton,
   TabButtonGroup,
   Select,
+  Option,
   install
 };

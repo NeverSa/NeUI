@@ -4,6 +4,4 @@ NeSelect.install = function(Vue) {
   Vue.component(NeSelect.name, NeSelect);
 };
 
-
-
 export  default NeSelect

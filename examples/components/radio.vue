@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NeTabButtonGroup style="margin-top:40px" v-model="active">
+    <!-- <NeTabButtonGroup style="margin-top:40px" v-model="active">
       <NeTabButton :lable="1">
         <i slot="icon">a</i>
         测试
@@ -18,16 +18,16 @@
         <i slot="icon">a</i>
         现场支持这咋打是
       </NeTabButton>
-    </NeTabButtonGroup>
+    </NeTabButtonGroup> -->
 
-    <Ne-Select>
+    <ne-select v-model="test">
       <ne-option
         v-for="item in options"
         :key="item.value"
         :label="item.label"
         :value="item.value"
       >{{ item.label }}</ne-option>
-    </Ne-Select>
+    </ne-select>
   </div>
 </template>
 <script>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       active: 1,
+      test:"选项1",
       options: [
         {
           value: "选项1",
