@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       active: 1,
-      test:"选项1",
+      test:"选项4",
       options: [
         {
           value: "选项1",

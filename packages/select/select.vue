@@ -3,9 +3,17 @@
     <div
       :class="['ne-select', { 'is-disabled': disabled }]"
          tabindex="0"
-      @click.stop="isOpen = !disabled && !isOpen"
-      @blur="handleBlur"
+        @click.stop="isOpen = !disabled && !isOpen"
+        @blur="handleBlur"
     >
+      <div class="ne-select-view">
+       <template v-if="!selectItems.length">
+          <span class="placeholder">{{ placeholder }}</span>
+        </template>
+        <template v-else>
+          <div>{{ selectItems }}</div>
+        </template>
+      </div>
       <div class="ne-select-dropdown" v-show="isOpen">
           <slot></slot>
       </div>
@@ -24,7 +32,6 @@ export default {
     optionKey: { type: String, default: "value" },
     value: { type: [String, Object, Number, Array] },
     multiple: { type: Boolean, default: false },
-    collapseTags: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false }
   },
    model: {
@@ -44,27 +51,20 @@ export default {
     };
   },
 
+  watch: {
+    selectValue:{
+      handler(value){
+        this.$emit("input", this.selectValue);
+        this.$emit("change",this.selectValue);//当前选中的value值
+      }
+    },
+   
+  },
   computed: {
     // restValueNum() {
     //   return this.selectItems.length - 1;
     // }
   },
-  //   watch: {
-  //   value: {
-  //     handler(value) {
-  //       const { multiple } = this;
-  //       const init = value ? value : multiple ? [] : "";
-  //       this.selectValue = multiple ? [...init] : init;
-  //     },
-  //     immediate: true
-  //   },
-  //   selectValue: {
-  //     handler(value) {
-  //       this.selectItems = [];
-  //     }
-  //   }
-  // },
-
     methods: {
     handleDelete(item) {
       const { value } = item;
@@ -74,6 +74,7 @@ export default {
     },
     handleBlur(event) {
       this.$emit("blur", event);
+      this.isOpen=false;
     },
     handleFocus(event) {
       this.$emit("focus", event);
@@ -94,6 +95,10 @@ export default {
   color: #979797;
   outline: none;
   transition: all 0.2s;
+  .ne-select-view{
+        line-height: 29px;
+      text-align: left;
+  }
   &:focus {
     border: 1px solid #209cee;
     box-shadow: 0 0 5px 0 rgba(32, 156, 238, 0.5);
