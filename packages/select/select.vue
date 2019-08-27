@@ -11,7 +11,7 @@
           <span class="placeholder">{{ placeholder }}</span>
         </template>
         <template v-else>
-          <div>{{ selectItems }}</div>
+          <div><span v-for="item in selectItems" :key="item.value"> {{item.label}}</span></div>
         </template>
       </div>
       <div class="ne-select-dropdown" v-show="isOpen">
@@ -41,7 +41,6 @@ export default {
   data() {
     return {
       isOpen: false,
-      selectValue: [],
       selectItems: []
     };
   },

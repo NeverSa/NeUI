@@ -62,6 +62,10 @@ export default {
       inputValue: "选项2",
       multipleInputValue: ["选项2"]
     };
+  },
+  created(){
+   this.$message('这是一条消息提示');
+
   }
 };
 </script>

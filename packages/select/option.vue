@@ -23,37 +23,40 @@ export default {
   methods: {
     handleClick() {
       const { value, label } = this;
-      this.neSelect.selectValue = value;
-      this.neSelect.selectItems = label;
+      if (!this.multiple) {
+        this.neSelect.selectItems = [];
+        this.neSelect.selectItems.push({
+          value,
+          label
+        });
+      }
     }
   },
- computed: {
+  computed: {
     isSelect() {
       const {
         value,
-        neSelect: {selectValue}
+        neSelect: { selectItems }
       } = this;
-      return selectValue==value
-    
-     // return selectItems.find(item => item.key === key);
+      return selectItems.find(item => item.value === value);
     }
   },
-  
-  created() {
-  },
-  watch:{
-     ["neSelect.value"]:{
-       handler(newValue){
-         if(newValue==this.value){
-             this.neSelect.selectValue = newValue;
-              this.neSelect.selectItems = this.label;
-         }
-       },
-       immediate: true
-     }
-  },
- 
 
+  created() {},
+  watch: {
+    ["neSelect.value"]: {
+      handler(newValue) {
+        if (newValue == this.value) {
+          this.neSelect.selectItems = [];
+          this.neSelect.selectItems.push({
+            value: newValue,
+            label: this.label
+          });
+        }
+      },
+      immediate: true
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -71,8 +74,8 @@ export default {
     border-radius: 5px;
   }
 }
-.is-select{
-  color:#9D88FF
+.is-select {
+  color: #9d88ff;
 }
 </style>
 
