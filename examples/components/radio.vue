@@ -18,7 +18,7 @@
         <i slot="icon">a</i>
         现场支持这咋打是
       </NeTabButton>
-    </NeTabButtonGroup> -->
+    </NeTabButtonGroup>-->
 
     <ne-select v-model="test">
       <ne-option
@@ -28,6 +28,8 @@
         :value="item.value"
       >{{ item.label }}</ne-option>
     </ne-select>
+
+    <ne-tree :data="data"></ne-tree>
   </div>
 </template>
 <script>
@@ -35,7 +37,7 @@ export default {
   data() {
     return {
       active: 1,
-      test:"选项4",
+      test: "选项4",
       options: [
         {
           value: "选项1",
@@ -60,12 +62,73 @@ export default {
         }
       ],
       inputValue: "选项2",
-      multipleInputValue: ["选项2"]
+      multipleInputValue: ["选项2"],
+      data: [
+        {
+          label: "一级 1",
+          children: [
+            {
+              label: "二级 1-1",
+              children: [
+                {
+                  label: "三级 1-1-1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "一级 2",
+          children: [
+            {
+              label: "二级 2-1",
+              children: [
+                {
+                  label: "三级 2-1-1"
+                }
+              ]
+            },
+            {
+              label: "二级 2-2",
+              children: [
+                {
+                  label: "三级 2-2-1",
+                   children:[
+                     {
+                        label: "四级4-2-1",
+                     }
+                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "一级 3",
+          children: [
+            {
+              label: "二级 3-1",
+              children: [
+                {
+                  label: "三级 3-1-1"
+                }
+              ]
+            },
+            {
+              label: "二级 3-2",
+              children: [
+                {
+                  label: "三级 3-2-1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     };
   },
-  created(){
-   this.$message('这是一条消息提示');
-
+  created() {
+    this.$message("这是一条消息提示");
   }
 };
 </script>

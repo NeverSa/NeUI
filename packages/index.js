@@ -9,7 +9,9 @@ import TabButtonGroup from './tab-button-group/index.js';
 import Select from './select/index.js';
 import Option from './select-option/index.js';
 import Message from './message/index.js';
-const components = [Button, Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option];
+import Tree from './tree/index.js';
+import "./icon/ne-iconfont.css"
+const components = [Button, Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
     Vue.component(component.name, component);
@@ -32,5 +34,6 @@ export default {
   Select,
   Option,
   Message,
+  Tree,
   install
 };
