@@ -30,11 +30,17 @@
     </ne-select>
 
     <ne-tree :data="data" :show-checkbox="false" @node-click="nodeClick"></ne-tree>
-    <ne-dialog v-model="show" title="提示" @conform="conform" width="500px" >
-      <div class="content">
-        测试撒支持支持支持在
-      </div>
+    <ne-dialog v-model="show" title="提示" @conform="conform" width="500px">
+      <div class="content">测试撒支持支持支持在</div>
     </ne-dialog>
+
+    <ne-table :data="tableData">
+      <ne-table-column label="名称" prop="date" >
+        <template slot-scope="{ row }">{{row.date}}</template>
+      </ne-table-column>
+      <ne-table-column label="日期" prop="name" ></ne-table-column>
+      <ne-table-column label="地址" prop="address"></ne-table-column>
+    </ne-table>
   </div>
 </template>
 <script>
@@ -42,7 +48,7 @@ export default {
   data() {
     return {
       active: 1,
-      show:true,
+      show: false,
       test: "选项4",
       options: [
         {
@@ -99,11 +105,11 @@ export default {
               children: [
                 {
                   label: "三级 2-2-1",
-                   children:[
-                     {
-                        label: "四级4-2-1",
-                     }
-                   ]
+                  children: [
+                    {
+                      label: "四级4-2-1"
+                    }
+                  ]
                 }
               ]
             }
@@ -130,17 +136,38 @@ export default {
             }
           ]
         }
+      ],
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "4",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-04",
+          name: "12",
+          address: "上海市普陀区金沙江路 1517 弄"
+        },
+        {
+          date: "2016-05-01",
+          name: "1",
+          address: "上海市普陀区金沙江路 1519 弄"
+        },
+        {
+          date: "2016-05-03",
+          name: "3",
+          address: "上海市普陀区金沙江路 1516 弄"
+        }
       ]
     };
   },
   created() {
     this.$message("这是一条消息提示");
   },
-  methods:{
-    nodeClick(node){
-    },
-    conform(){
-      this.show=false
+  methods: {
+    nodeClick(node) {},
+    conform() {
+      this.show = false;
     }
   }
 };

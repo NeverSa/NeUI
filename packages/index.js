@@ -12,7 +12,8 @@ import Message from './message/index.js';
 import Tree from './tree/index.js';
 import "./icon/ne-iconfont.css"
 import Dialog from './dialog/index.js';
-const components = [Button, Dialog,Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
+import {NeTable,NeTableColumn} from './table/index.js';
+const components = [Button, Dialog,Radio, RadioGroup,NeTable,NeTableColumn, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
     Vue.component(component.name, component);
@@ -36,6 +37,8 @@ export default {
   Option,
   Message,
   Tree,
+  NeTable,
   Dialog,
+  NeTableColumn,
   install
 };
