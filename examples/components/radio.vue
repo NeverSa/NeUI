@@ -29,7 +29,12 @@
       >{{ item.label }}</ne-option>
     </ne-select>
 
-    <ne-tree :data="data"></ne-tree>
+    <ne-tree :data="data" :show-checkbox="false" @node-click="nodeClick"></ne-tree>
+    <ne-dialog v-model="show" title="提示" @conform="conform" width="500px" >
+      <div class="content">
+        测试撒支持支持支持在
+      </div>
+    </ne-dialog>
   </div>
 </template>
 <script>
@@ -37,6 +42,7 @@ export default {
   data() {
     return {
       active: 1,
+      show:true,
       test: "选项4",
       options: [
         {
@@ -129,6 +135,13 @@ export default {
   },
   created() {
     this.$message("这是一条消息提示");
+  },
+  methods:{
+    nodeClick(node){
+    },
+    conform(){
+      this.show=false
+    }
   }
 };
 </script>

@@ -11,7 +11,8 @@ import Option from './select-option/index.js';
 import Message from './message/index.js';
 import Tree from './tree/index.js';
 import "./icon/ne-iconfont.css"
-const components = [Button, Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
+import Dialog from './dialog/index.js';
+const components = [Button, Dialog,Radio, RadioGroup, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
     Vue.component(component.name, component);
@@ -35,5 +36,6 @@ export default {
   Option,
   Message,
   Tree,
+  Dialog,
   install
 };
