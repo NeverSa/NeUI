@@ -27,6 +27,7 @@ module.exports = {
                 title: '开始使用',
                 children: [
                     ['/blog/botton.md', '按钮'],
+                    ['/blog/checkbox.md', 'Checkbox 多选框'],
                 ]
             }
 

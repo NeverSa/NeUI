@@ -21,6 +21,9 @@
 </template>
 
 <style lang="less">
+.ne-checkbox + .ne-checkbox{
+  margin-left: 15px;
+}
 .ne-checkbox {
   display: inline-flex;
   align-items: center;
@@ -49,6 +52,7 @@
     }
   }
 }
+
 .is-checked {
   .checkbox-inner {
     &::after {
