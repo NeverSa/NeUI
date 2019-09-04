@@ -28,7 +28,7 @@ export default {
   name: "NeTabButton",
   componentName: "NeTabButton",
   props: {
-    lable: ""
+    lable: String || Number
   },
   data() {
     return {};

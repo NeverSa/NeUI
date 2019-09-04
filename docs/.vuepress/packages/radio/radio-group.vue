@@ -17,7 +17,11 @@
      model: {
       
     },
-   
+    watch:{
+      value(){
+        this.$emit("change",this.value)
+      }
+    }
  
    
   };
