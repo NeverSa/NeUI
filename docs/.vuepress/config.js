@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/blog/',
+    base: '/',
     title: '一条大何全靠浪',
     description: '~~~~~~~~~',
     markdown: {
