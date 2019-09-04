@@ -14,11 +14,28 @@
 <checkboxgroup></checkboxgroup>
 
 <<<@/docs/.vuepress/components/checkboxgroup.vue
->Attributes
+>Checkbox Attributes
 
 | 参数        | 说明           | 类型  | 可选值  |默认值  |
 | ------------- |:-------------:| -----:| -----:| -----:|
-| size          | 尺寸          | string |待开发 |待开发 |
-| icon          | 图标类名      |  string |阿里Iconfont|————|
+| value / v-model| 绑定值      | string / number / boolean |———— |———— |
 
+
+>Checkbox Events
+
+| 事件名       | 说明           | 参数  | 
+| ------------- |:-------------:| -----:| 
+| select        | 绑定值更新时触发| 无 |
+
+>Checkbox-group Attributes
+
+| 参数        | 说明           | 类型  | 可选值  |默认值  |
+| ------------- |:-------------:| -----:| -----:| -----:|
+| v-model| 绑定值（数组形式）      | array |———— |———— |
+
+>Checkbox-group  Events
+
+| 事件名        | 说明           | 参数  | 
+| ------------- |:-------------:| -----:| 
+| select        | 绑定值更新时触发| 无 |
 
