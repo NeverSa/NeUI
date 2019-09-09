@@ -50,27 +50,14 @@ export default {
     };
   },
 
-  watch: {
-    selectValue:{
-      handler(value){
-        this.$emit("input", this.selectValue);
-        this.$emit("change",this.selectValue);//当前选中的value值
-      }
-    },
-   
-  },
+
   computed: {
     // restValueNum() {
     //   return this.selectItems.length - 1;
     // }
   },
     methods: {
-    handleDelete(item) {
-      const { value } = item;
-      this.selectValue = this.selectValue.filter(item => item !== value);
-      this.$emit("input", this.selectValue);
-      this.$emit("change", this.selectValue);
-    },
+   
     handleBlur(event) {
       this.$emit("blur", event);
       this.isOpen=false;
@@ -129,6 +116,8 @@ export default {
    border-bottom-right-radius: 10px;
    padding-bottom: 15px;
     padding-top: 15px;
+    background: #fff;
+    z-index: 8;
   }
 }
 </style>

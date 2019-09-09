@@ -28,8 +28,10 @@ module.exports = {
                 children: [
                     ['/blog/botton.md', '按钮'],
                     ['/blog/checkbox.md', 'Checkbox 多选框'],
-                    ['/blog/radio.md', 'radio 单选框'],
+                    ['/blog/radio.md', 'Radio 单选框'],
                     ['/blog/tab-botton.md', 'Tab 操作按钮组'],
+                    ['/blog/select.md', 'Select 下拉选择'],
+                    ['/blog/table.md', 'Table 表格'],
                 ]
             }
 

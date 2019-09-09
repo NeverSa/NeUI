@@ -2,7 +2,7 @@
   <div class="ne-select-item" @click="handleClick" :class="{
     'is-select':isSelect
   }">
-    <slot></slot>
+    <slot>{{label}}</slot>
   </div>
 </template>
 
@@ -29,6 +29,8 @@ export default {
           value,
           label
         });
+       this.neSelect.$emit("input", value);
+        this.neSelect.$emit("change", value)
       }
     }
   },
@@ -38,7 +40,7 @@ export default {
         value,
         neSelect: { selectItems }
       } = this;
-      return selectItems.find(item => item.value === value);
+      return selectItems.find(item => item.value == value);
     }
   },
 
@@ -52,6 +54,7 @@ export default {
             value: newValue,
             label: this.label
           });
+      
         }
       },
       immediate: true

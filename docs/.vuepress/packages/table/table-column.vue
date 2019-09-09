@@ -1,6 +1,6 @@
 <template>
   <td class="td-wrapper c-size-m">
-    <slot :row="item">{{item[prop]}}</slot>
+    <span v-show="!Array.isArray(item)">  <slot :row="item" >{{item[prop]}}</slot></span>
   </td>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   inject: ["neTable"],
   data() {
     return {
-      item: []
+      item:[]
     };
   },
   created() {

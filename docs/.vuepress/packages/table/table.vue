@@ -6,14 +6,15 @@
     <table>
       <thead>
         <tr class="tr-wrapper">
-          <th></th>
+          <th style="width:10%"></th>
           <th v-for="(item, index) in labels" :key="index" @click="SortBy(item)">
-            {{ item.label }}
+            {{ item.label }} 
             <span class="label_sort" v-if="item.sort"></span>
           </th>
         </tr>
       </thead>
       <tbody class="table__body-wrapper">
+        <tr v-if="copDaya.length==0"> <slot></slot></tr>
         <tr v-for="(item, index) in copDaya" :key="index" :data-index="index" class="tr-wrapper">
           <td>
             <div class="solt_check" :class="{'is-check':IsCheck}">
@@ -23,8 +24,9 @@
               </span>
             </div>
           </td>
-          <slot :item="item"></slot>
+           <slot :item="item"></slot>
         </tr>
+     
       </tbody>
     </table>
   </div>
@@ -55,11 +57,14 @@ export default {
       });
     }
   },
+  created(){
+    console.log(this)
+  },
   methods: {
     //初始化表头
     addLabel(label) {
       const { labels } = this;
-      const existItem = labels.find(item => item.label === label.label);
+      const existItem = labels.find(item => item.label == label.label);
       if (existItem) {
         existItem.colspan += 1;
       } else {
@@ -113,19 +118,32 @@ export default {
   table {
     border: none;
     width: 100%;
+       display: table;
+     table-layout: fixed; 
     thead {
+       width: 100%;
+          tr{
+          border:none;
+       }
       th {
         font-size: 16px;
         color: #4a4642;
         font-weight: 600;
         cursor: pointer;
+         border:none;
       }
     }
     tbody {
+       width: 100%;
+       tr{
+          border:none;
+       }
       td {
         font-size: 14px;
         color: #4a4642;
         padding: 15px;
+        border:none;
+        text-align: center;
       }
     }
     .table__body-wrapper {
