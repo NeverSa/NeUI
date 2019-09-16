@@ -1324,6 +1324,11 @@ async-limiter@~1.0.0:
   resolved "https://registry.npm.taobao.org/async-limiter/download/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha1-3TeelPDbgxCwgpH51kwyCXZmF/0=
 
+async-validator@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/async-validator/-/async-validator-3.1.0.tgz#447db5eb003cbb47e650f040037a29fc3881ce92"
+  integrity sha512-XyAHGwtpx3Y3aHIOaGXXFo4tiulnrh+mXBU9INxig6Q8rtmtmBxDuCxb60j7EIGbAsQg9cxfJ2jrUZ+fIqEnBQ==
+
 async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/async/download/async-1.5.2.tgz?cache=0&sync_timestamp=1563385399810&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fasync%2Fdownload%2Fasync-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"

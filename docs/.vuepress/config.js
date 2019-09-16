@@ -33,8 +33,13 @@ module.exports = {
                     ['/blog/select.md', 'Select 下拉选择'],
                     ['/blog/table.md', 'Table 表格'],
                 ]
+            },
+            {
+                title: '表单',
+                children: [
+                    ['/blog/form.md', '表单'],
+                ]
             }
-
         ]
     }
 }

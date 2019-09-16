@@ -21,8 +21,9 @@
 <script>
 import Emitter from "../mixins/eventbus.js";
 export default {
-  name: "NeInput",
+  name: "MeInput",
   mixins: [Emitter],
+  inject: ["formItem"],
   props: {
     label: { type: String, default: "" },
     type: { type: String, default: "text" },

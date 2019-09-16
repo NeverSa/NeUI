@@ -12,13 +12,18 @@ import Message from './message/index.js';
 import Tree from './tree/index.js';
 import "./icon/ne-iconfont.css"
 import Dialog from './dialog/index.js';
-import {NeTable,NeTableColumn} from './table/index.js';
-const components = [Button, Dialog,Radio, RadioGroup,NeTable,NeTableColumn, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup,Select,Option,Tree];
+import { NeTable, NeTableColumn } from './table/index.js';
+import { NeForm, NeFormItem ,Meinput} from './form/index.js';
+const components = [Button, Dialog, Radio, RadioGroup, NeTable, NeTableColumn, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
+  NeForm,
+  NeFormItem,
+  Meinput
+];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
     Vue.component(component.name, component);
   });
-  Vue.prototype.$message=Message
+  Vue.prototype.$message = Message
 }
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
@@ -40,5 +45,8 @@ export default {
   NeTable,
   Dialog,
   NeTableColumn,
+  NeForm,
+  NeFormItem,
+  Meinput,
   install
 };
