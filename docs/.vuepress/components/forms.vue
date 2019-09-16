@@ -11,7 +11,7 @@
     <div>
       <div @click="submitForm">提交</div>
     </div>
-     <ne-input v-model="formData.mail" label="邮箱" :disabled="false"></ne-input>
+     <ne-input v-model="formData.mail" label="邮箱" :disabled="true"></ne-input>
   </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ne-table :data="tableData">
+    <ne-table  :dataSource="tableData">
       <ne-table-column label="日期" prop="date">
         <template slot-scope="scope">
           <ne-button>{{scope.row.name}}</ne-button>
