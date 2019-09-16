@@ -2,9 +2,6 @@
   <div>
     <ne-table  :dataSource="tableData">
       <ne-table-column label="日期" prop="date">
-        <template slot-scope="scope">
-          <ne-button>{{scope.row.name}}</ne-button>
-        </template>
       </ne-table-column>
       <ne-table-column label="姓名" prop="name"></ne-table-column>
       <ne-table-column label="地址" prop="address"></ne-table-column>

@@ -8,8 +8,8 @@
 
 <script>
   import TableStore from './TableStore'
-  // import TableLayout from './TableLayout'
-  // import TableColumn from './TableColumn'
+  import TableLayout from './table-layout'
+  import TableColumn from './table-column'
   import TableHeader from './table-header'
   import TableBody from './table-body'
   export default {
@@ -51,6 +51,7 @@
       }
     },
     components: {
+       TableColumn,
       TableHeader,
       TableBody
     }
