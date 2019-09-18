@@ -1,5 +1,5 @@
-import NeTable from './src/table';
-import NeTableColumn from './src/table-column';
+import NeTable from './table';
+import NeTableColumn from './table-column';
 /* istanbul ignore next */
 NeTable.install = function(Vue) {
   Vue.component(NeTable.name, NeTable);

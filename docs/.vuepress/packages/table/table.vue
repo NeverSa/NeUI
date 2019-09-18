@@ -1,21 +1,12 @@
 <template>
   <div class="el-table">
-    <!--隐藏列-->
-    <div class="hidden-columns"><slot></slot></div>
     <!--表头部分-->
     <div class="el-table__header-wrapper">
-        <table-header
-        ref="tableHeader"
-        :store="store"
-       >
-      </table-header>
+      <table-header :columns="columns"></table-header>
     </div>
     <!--表格主体-->
     <div class="el-table__body-wrapper">
-       <table-body  
-       ref="TableBody"
-       :store="store"
-       ></table-body>
+      <table-body :data="cloneData" :columns="columns" ></table-body>
     </div>
     <!--左侧固定列-->
     <div class="el-table__fixed"></div>
@@ -25,61 +16,56 @@
     <div class="el-table__fixed-right-patch"></div>
     <!--列宽调整代理-->
     <div class="el-table__column-resize-proxy"></div>
-</div>
+  </div>
 </template>
 
 <script>
 import TableStore from "./TableStore";
-import TableLayout from "./table-layout";
 import TableColumn from "./table-column";
 import TableHeader from "./table-header";
 import TableBody from "./table-body";
+import { deepCopy } from "./uitis";
 export default {
   name: "NeTable",
   props: {
-    dataSource: {
-      required: true
+    data: {
+      type: Array,
+      default() {
+        return [];
+      }
     },
-    emptyText: {
-      default: "没有数据"
-    },
-    height: [String, Number]
+    columns: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   data() {
-    const store = new TableStore(this);
-    const layout = new TableLayout({ table: this, store: store });
     return {
-      store,
-      layout,
-      columns: [],
+      cloneData: deepCopy(this.data),
+      objData: []
     };
   },
-  computed: {
-   
-  },
+  computed: {},
   mounted() {
-    this.doLayout();
-    this.columns = this.store.states.columns;
+    console.log(deepCopy(this.data));
   },
-  methods: {
-    doLayout() {
-      this.layout.setHeight(this.height);
-    },
-    clickTr(row){
-        this.store.commit("handleRowClick",row)
-    },
-   
-  },
+  methods: {},
   watch: {
-    // dataSource(oldVal, val) {
-    //   debugger
-    //   this.dataSource = val;
-    // }
+            data: {
+                handler (oldval,newval) {
+                 this.cloneData = deepCopy(this.data);
+                },
+                deep: true
+            },
+          
+       
   },
   components: {
     TableColumn,
     TableHeader,
-    TableBody,
+    TableBody
   }
 };
 </script>

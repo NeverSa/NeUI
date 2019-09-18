@@ -1,96 +1,87 @@
 <template>
   <div>
-    <ne-table  :dataSource="tableData">
-      <ne-table-column label="日期" prop="date" :sortable="true">
-       
-      </ne-table-column>
-      <ne-table-column label="姓名" prop="name" :sortable="true"></ne-table-column>
-      <ne-table-column label="地址" prop="address"></ne-table-column>
-    </ne-table>
+    <ne-table :columns="columns1" :data="data1"></ne-table>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      tableData: [
+      columns1: [
+        {
+          title: "Name",
+          key: "name",
+          render: (h, params) => {
+            return h("div", [h("strong", params.row.date)]);
+          }
+        },
+        {
+          title: "Age",
+          key: "age"
+        },
+        {
+          title: "Address",
+          key: "address"
+        }
+      ],
+      data1: [
         // {
-        //   date: "1",
-        //   name: "王小虎",
-        //   address: "上海市普陀区金沙江路 1518 弄"
+        //   name: "John Brown",
+        //   age: 18,
+        //   address: "New York No. 1 Lake Park",
+        //   date: "2016-10-03"
         // },
         // {
-        //   date: "3",
-        //   name: "王小虎",
-        //   address: "上海市普陀区金沙江路 1517 弄"
+        //   name: "Jim Green",
+        //   age: 24,
+        //   address: "London No. 1 Lake Park",
+        //   date: "2016-10-01"
         // },
         // {
-        //   date: "4",
-        //   name: "王小虎",
-        //   address: "上海市普陀区金沙江路 1519 弄"
+        //   name: "Joe Black",
+        //   age: 30,
+        //   address: "Sydney No. 1 Lake Park",
+        //   date: "2016-10-02"
         // },
         // {
-        //   date: "5",
-        //   name: "王小虎",
-        //   address: "上海市普陀区金沙江路 1516 弄"
+        //   name: "Jon Snow",
+        //   age: 26,
+        //   address: "Ottawa No. 2 Lake Park",
+        //   date: "2016-10-04"
         // }
       ]
     };
   },
-  created(){
-    setTimeout(()=>{
-      this.tableData=[
+  created() {
+    setTimeout(() => {
+      this.data1 = [
         {
-          date: "1",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          date: "2016-10-03"
         },
         {
-          date: "3",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
+          name: "Jim Green",
+          age: 24,
+          address: "London No. 1 Lake Park",
+          date: "2016-10-01"
         },
         {
-          date: "4",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          date: "2016-10-02"
         },
         {
-          date: "5",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
         }
       ];
-      console.log(this.tableData)
-    },1000);
-
-     setTimeout(()=>{
-      this.tableData=[
-        {
-          date: "3",
-          name: "asd",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "3",
-          name: "asd",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "3",
-          name: "asd",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "5",
-          name: "asd",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ];
-      console.log(this.tableData)
-    },5000);
+      console.log(this.data1);
+    }, 1000);
   }
-
-  
 };
 </script>
