@@ -14,16 +14,8 @@ const TableStore = function (table, initialState) {
     handleHoverEvent (row) {
       this.table.$emit('row-hover', row)
     },
-    init () {
-      var rows = this.table.$refs.table.children[1].children
-      for (let i = 0; i < rows.length; i++) {
-        rows[i].onmouseover = () => {
-          rows[i].style.background = 'rgba(255, 99, 132, 0.2)'
-        }
-        rows[i].onmouseout = () => {
-          rows[i].style.background = 'white'
-        }
-      }
+    insertColumn(column){
+      this.states.columns.push(column)
     }
   }
   TableStore.prototype.commit = function (name, ...args) {

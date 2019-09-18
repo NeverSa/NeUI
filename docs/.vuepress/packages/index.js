@@ -10,7 +10,7 @@ import Select from './select/index.js';
 import Option from './select-option/index.js';
 import Message from './message/index.js';
 import Tree from './tree/index.js';
-import "./icon/ne-iconfont.css"
+import "./icon/iconfont.css"
 import Dialog from './dialog/index.js';
 import { NeTable, NeTableColumn } from './table/index.js';
 import { NeForm, NeFormItem ,Meinput} from './form/index.js';
