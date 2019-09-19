@@ -1,15 +1,13 @@
 import NeTable from './table';
-import NeTableColumn from './table-column';
+import NeTabBar  from "./tab-bar"
 /* istanbul ignore next */
 NeTable.install = function(Vue) {
   Vue.component(NeTable.name, NeTable);
 };
 
-NeTableColumn.install = function(Vue) {
-  Vue.component(NeTableColumn.name, NeTableColumn);
+NeTabBar.install = function(Vue) {
+  Vue.component(NeTabBar.name, NeTabBar);
 };
 
 
-
-
-export {NeTable,NeTableColumn} 
+export {NeTable,NeTabBar} 

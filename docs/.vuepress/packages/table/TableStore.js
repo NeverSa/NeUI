@@ -2,10 +2,6 @@ const TableStore = function (table, initialState) {
     if (!table) {
       throw new Error('Table is required')
     }
-    this.table = table
-    this.states = {
-      columns: []
-    }
   }
   TableStore.prototype.mutations = {
     handleRowClick (row) {

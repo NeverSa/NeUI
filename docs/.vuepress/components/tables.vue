@@ -1,18 +1,29 @@
 <template>
   <div>
-    <ne-table :columns="columns1" :data="data1"></ne-table>
+    <ne-table :columns="columns" :data="data" :show-check="true" @row-click="rowClick">
+      <div slot="common">
+        <ne-tab-bar lable="查找" icon="ne-bianji"  @click="test()"/>
+        <ne-tab-bar lable="导出" icon="ne-bianji"  @click="test()"/>
+        <ne-button icon="ne-bianji" @click="test()">默认状态</ne-button>
+      </div>
+      <div slot="check">
+        <ne-tab-bar lable="删除" icon="ne-close"  @click="test()"/>
+        <ne-tab-bar lable="编辑" icon="ne-time"  @click="test()"/>
+        <ne-button  @click="test()">激活状态</ne-button>
+      </div>
+    </ne-table>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      columns1: [
+      columns: [
         {
           title: "Name",
           key: "name",
           render: (h, params) => {
-            return h("div", [h("strong", params.row.date)]);
+            return h("div", params.row.date);
           }
         },
         {
@@ -24,37 +35,20 @@ export default {
           key: "address"
         }
       ],
-      data1: [
-        // {
-        //   name: "John Brown",
-        //   age: 18,
-        //   address: "New York No. 1 Lake Park",
-        //   date: "2016-10-03"
-        // },
-        // {
-        //   name: "Jim Green",
-        //   age: 24,
-        //   address: "London No. 1 Lake Park",
-        //   date: "2016-10-01"
-        // },
-        // {
-        //   name: "Joe Black",
-        //   age: 30,
-        //   address: "Sydney No. 1 Lake Park",
-        //   date: "2016-10-02"
-        // },
-        // {
-        //   name: "Jon Snow",
-        //   age: 26,
-        //   address: "Ottawa No. 2 Lake Park",
-        //   date: "2016-10-04"
-        // }
-      ]
+      data: []
     };
+  },
+  methods: {
+    rowClick(row) {
+      console.log(row);
+    },
+    test(){
+      alert(1)
+    }
   },
   created() {
     setTimeout(() => {
-      this.data1 = [
+      this.data = [
         {
           name: "John Brown",
           age: 18,

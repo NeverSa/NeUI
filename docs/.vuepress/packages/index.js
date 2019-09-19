@@ -12,9 +12,10 @@ import Message from './message/index.js';
 import Tree from './tree/index.js';
 import "./icon/iconfont.css"
 import Dialog from './dialog/index.js';
-import { NeTable, NeTableColumn } from './table/index.js';
+import { NeTable,NeTabBar} from './table/index.js';
 import { NeForm, NeFormItem ,Meinput} from './form/index.js';
-const components = [Button, Dialog, Radio, RadioGroup, NeTable, NeTableColumn, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
+const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
+  NeTabBar,
   NeForm,
   NeFormItem,
   Meinput
@@ -44,7 +45,7 @@ export default {
   Tree,
   NeTable,
   Dialog,
-  NeTableColumn,
+  NeTabBar,
   NeForm,
   NeFormItem,
   Meinput,
