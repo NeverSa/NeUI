@@ -14,11 +14,13 @@ import "./icon/iconfont.css"
 import Dialog from './dialog/index.js';
 import { NeTable,NeTabBar} from './table/index.js';
 import { NeForm, NeFormItem ,Meinput} from './form/index.js';
+import NePagiNation from './pagination/index.js';
 const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
   NeTabBar,
   NeForm,
   NeFormItem,
-  Meinput
+  Meinput,
+  NePagiNation
 ];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
@@ -49,5 +51,6 @@ export default {
   NeForm,
   NeFormItem,
   Meinput,
+  NePagiNation,
   install
 };

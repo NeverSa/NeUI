@@ -32,6 +32,7 @@ module.exports = {
                     ['/blog/tab-botton.md', 'Tab 操作按钮组'],
                     ['/blog/select.md', 'Select 下拉选择'],
                     ['/blog/table.md', 'Table 表格'],
+                    ['/blog/pagination.md', 'Pagination 翻页器'],
                 ]
             },
             {
