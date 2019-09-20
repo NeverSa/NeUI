@@ -1,33 +1,44 @@
 <template>
-  <div class="pagination-wrapper">
-    <ul :class="['pagination-inner']">
-      <!-- backward Paginations -->
+  <div class="ne-pagination_warper">
+    <span class="pagination_prew" :class="{'is_disabled':!canPre}">
+      <i class="iconfont ne-arrow_left" @click.stop="handleClick({ type: 'pre' })"></i>
+    </span>
+    <ul class="pagination-inner">
       <li
         v-for="item in forwardPaginations"
         :key="item"
-        :class="['pagination-item', { 'is-active': item === current }]"
+        :class="{ 'is-active': item === current }"
         @click.stop="handleClick({ type: 'select', data: item })"
-      >{{ item }}</li>
-      <!-- end -->
-      <!-- middle paginations -->
+      >
+        {{ item }}
+        <span class="active_text" v-show="item === current">{{ item }}</span>
+      </li>
+
       <template v-if="isForwardBrief && isBackwardBrief">
         <li
           v-for="item in middlePaginations"
           :key="item"
-          :class="['pagination-item', { 'is-active': item === current }]"
+          :class=" { 'is-active': item === current }"
           @click.stop="handleClick({ type: 'select', data: item })"
-        >{{ item }}</li>
+        >
+          {{ item }}
+          <span class="active_text" v-show="item === current">{{ item }}</span>
+        </li>
       </template>
-      <!-- end -->
-      <!-- backward paginations -->
+
       <li
         v-for="item in backwardPaginations"
         :key="item"
-        :class="['pagination-item', { 'is-active': item === current }]"
+        :class=" { 'is-active': item === current }"
         @click.stop="handleClick({ type: 'select', data: item })"
-      >{{ item }}</li>
-      <!-- end -->
+      >
+        {{ item }}
+        <span class="active_text" v-show="item === current">{{ item }}</span>
+      </li>
     </ul>
+    <span class="pagination_prew" @click.stop="handleClick({ type: 'next' })" :class="{'is_disabled':!canNext}">
+      <i class="iconfont ne-arrow_right"></i>
+    </span>
   </div>
 </template>
 <script>
@@ -121,3 +132,55 @@ export default {
   }
 };
 </script>
+<style lang="less" scoped>
+.ne-pagination_warper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .pagination_prew {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f6f6f8;
+    color: #979797;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .is_disabled{
+      cursor: not-allowed;
+      color: #f1f1f1
+  }
+  .pagination-inner {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    background: #f6f6f8;
+    border-radius: 15px;
+    padding: 3px 10px;
+    margin: 0px 10px;
+    li {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      position: relative;
+      .active_text {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        color: #000;
+        left: 0px;
+        top: -6px;
+        box-shadow: 0px 2px 8px 0px #c1bcbc;
+        border-radius: 5px;
+      }
+    }
+    .is-active {
+    }
+  }
+}
+</style>

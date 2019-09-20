@@ -13,6 +13,20 @@
       "unicode_decimal": 58948
     },
     {
+      "icon_id": "851711",
+      "name": "箭头_右",
+      "font_class": "arrow_right",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "851712",
+      "name": "箭头_左",
+      "font_class": "arrow_left",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
       "icon_id": "1207825",
       "name": "close",
       "font_class": "close",
