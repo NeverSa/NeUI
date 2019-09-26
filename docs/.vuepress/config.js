@@ -33,6 +33,7 @@ module.exports = {
                     ['/blog/select.md', 'Select 下拉选择'],
                     ['/blog/table.md', 'Table 表格'],
                     ['/blog/pagination.md', 'Pagination 翻页器'],
+                    ['/blog/tree.md', 'Tree 树形控件'],
                 ]
             },
             {

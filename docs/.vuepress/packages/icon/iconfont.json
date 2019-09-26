@@ -13,6 +13,13 @@
       "unicode_decimal": 58948
     },
     {
+      "icon_id": "688121",
+      "name": "拖拽 菜单 导航",
+      "font_class": "ullist",
+      "unicode": "e79e",
+      "unicode_decimal": 59294
+    },
+    {
       "icon_id": "851711",
       "name": "箭头_右",
       "font_class": "arrow_right",
@@ -74,6 +81,13 @@
       "font_class": "drag",
       "unicode": "e728",
       "unicode_decimal": 59176
+    },
+    {
+      "icon_id": "9745394",
+      "name": "drag",
+      "font_class": "drag1",
+      "unicode": "e648",
+      "unicode_decimal": 58952
     },
     {
       "icon_id": "10818692",
