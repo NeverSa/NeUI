@@ -15,12 +15,17 @@ import Dialog from './dialog/index.js';
 import { NeTable,NeTabBar} from './table/index.js';
 import { NeForm, NeFormItem ,Meinput} from './form/index.js';
 import NePagiNation from './pagination/index.js';
+import { NeDropdown,NeDropdownOption} from './dropdown/index.js';
+import NeScreen from './screen/index.js';
 const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
   NeTabBar,
   NeForm,
   NeFormItem,
   Meinput,
-  NePagiNation
+  NePagiNation,
+  NeDropdown,
+  NeDropdownOption,
+  NeScreen
 ];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
@@ -52,5 +57,8 @@ export default {
   NeFormItem,
   Meinput,
   NePagiNation,
+  NeDropdown,
+  NeDropdownOption,
+  NeScreen,
   install
 };

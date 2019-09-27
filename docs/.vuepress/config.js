@@ -34,6 +34,8 @@ module.exports = {
                     ['/blog/table.md', 'Table 表格'],
                     ['/blog/pagination.md', 'Pagination 翻页器'],
                     ['/blog/tree.md', 'Tree 树形控件'],
+                    ['/blog/dropdown.md', 'dropdown 下拉'],
+                    ['/blog/screen.md', 'screen 筛选器'],
                 ]
             },
             {
