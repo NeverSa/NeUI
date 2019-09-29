@@ -1,9 +1,9 @@
 
 
 ### 按钮
-<botton/>
+<screen/>
 
-<<<@/docs/.vuepress/components/botton.vue
+<<<@/docs/.vuepress/components/screen.vue
 
 
 >Attributes
