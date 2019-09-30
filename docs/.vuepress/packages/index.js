@@ -17,6 +17,7 @@ import { NeForm, NeFormItem ,Meinput} from './form/index.js';
 import NePagiNation from './pagination/index.js';
 import { NeDropdown,NeDropdownOption} from './dropdown/index.js';
 import {NeScreen,NeScreenOption} from './screen/index.js';
+import NeDatePicker from './date-picker/index.js';
 const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
   NeTabBar,
   NeForm,
@@ -26,7 +27,8 @@ const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, Check
   NeDropdown,
   NeDropdownOption,
   NeScreen,
-  NeScreenOption
+  NeScreenOption,
+  NeDatePicker
 ];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
@@ -62,5 +64,6 @@ export default {
   NeDropdownOption,
   NeScreen,
   NeScreenOption,
+  NeDatePicker,
   install
 };

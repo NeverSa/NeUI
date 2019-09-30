@@ -64,11 +64,13 @@ export default {
   methods: {
     handlefocus(e) {
       this.isFoucse = true;
+      this.$emit("handlefocus"); 
     },
     handleInput(e) {
       const value = e.target.value;
       this.currentValue = value;
       this.$emit("input", value);
+      
       this.dispatch("NeFormItem", "form-change", value);
     },
     handleBlur() {

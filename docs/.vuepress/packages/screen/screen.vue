@@ -1,16 +1,22 @@
 <template>
   <div class="ne-screen">
     <div class="ne-screen_result">
-      <span>{{resultlabel}}></span>
+      <span>{{resultlabel}}</span>
+
       <span class="result_list">
-        <button class="result_list_botton" v-for="item in selectdata">
+        <button class="result_list_botton" v-for="(item,index) in selectdata">
           {{item.name}}
-          <i class="ne-close iconfont"></i>
+          <i class="ne-close iconfont" @click="deleteNode(item,index)"></i>
         </button>
       </span>
     </div>
-    <div class="ne-scree_list">
-      <slot></slot>
+    <transition name="fade">
+      <div class="ne-scree_list" v-if="open">
+        <slot></slot>
+      </div>
+    </transition>
+    <div class="option_btn_warp">
+      <button class="option_btn" @click="open=!open">{{open?'收起筛选':'展开筛选'}}</button>
     </div>
   </div>
 </template>
@@ -24,10 +30,11 @@ export default {
       type: String,
       default: "结果"
     },
-    selectdata: {//选中筛选的集合
+    selectdata: {
+      //选中筛选的集合
       type: Array,
       default: []
-    }
+    },
   },
   model: {
     prop: "selectdata",
@@ -39,17 +46,28 @@ export default {
     };
   },
   data() {
-    return {};
+    return {
+       open:true, 
+    };
   },
-    created(){
-        
-    },
+  created() {},
   computed: {},
-  methods: {}
+  methods: {
+    deleteNode(item, index) {
+      this.selectdata.splice(index, 1);
+    }
+  }
 };
 </script>
 <style lang="less" >
 .ne-screen {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
   .ne-screen_result {
     .result_list {
       .result_list_botton {
@@ -60,6 +78,7 @@ export default {
         background: transparent;
         padding: 5px 15px;
         outline: none;
+        margin: 0px 5px;
         .ne-close {
           font-size: 12px;
           color: #ffb463;
@@ -67,6 +86,22 @@ export default {
           cursor: pointer;
         }
       }
+    }
+  }
+  .option_btn_warp {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-top:15px;
+    .option_btn {
+      padding: 5px 20px;
+      background: #ffe8d0;
+      color: #ff8e31;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      margin: 0 auto;
     }
   }
 }

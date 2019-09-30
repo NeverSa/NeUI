@@ -2,8 +2,8 @@
   <div class="ne-screen_option">
     <span class="label">{{label}}:</span>
     <span class="option_list">
-      <button>全部</button>
-      <button v-for="item in filterData" @click="selectItem(item)">{{item[value]}}</button>
+      <button v-if="multiple" @click="selectAll()">全部</button>
+      <button v-for="item in copydata" @click="selectItem(item)">{{item[value]}}</button>
     </span>
   </div>
 </template>
@@ -27,30 +27,39 @@ export default {
       type: String,
       default: ""
     },
-    all: {
-      type: Boolean,
-      default: true
-    },
     keys: {
       type: String,
       default: ""
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     }
   },
   model: {},
   data() {
     return {
-     
+      copydata: []
     };
   },
- 
   inject: ["screen"],
   computed: {
-       filterData(){
-            return this.data.filter(item=>{
-                console.log(item[this.keys])
-             return  item[this.keys]!=="1"
-            })
-       }
+    //结果中是否已经存在
+    exist() {
+      let exist = false;
+      this.data.forEach(item => {
+        let has = this.screen.selectdata.find(value => {
+          return (
+            value[this.value] == item[this.value] &&
+            value[this.keys] == item[this.keys]
+          );
+        });
+        if (has) {
+          exist = true;
+        }
+      });
+      return exist;
+    }
   },
   created() {
     this.screen.selectdata.forEach(element => {
@@ -58,8 +67,33 @@ export default {
         this.$set(element, "name", element[this.value]);
       }
     });
+    this.getcopyData();
   },
+  watch: {
+    "screen.selectdata": {
+      handler() {
+        this.getcopyData();
+      },
+      deep: true
+    }
+  },
+
   methods: {
+    getcopyData() {
+      let arr = [];
+      this.data.forEach(item => {
+        let has = this.screen.selectdata.find(value => {
+          return (
+            value[this.value] == item[this.value] &&
+            value[this.keys] == item[this.keys]
+          );
+        });
+        if (!has) {
+          arr.push(item);
+        }
+      });
+      this.copydata = arr;
+    },
     selectItem(item) {
       let has = this.screen.selectdata.find(value => {
         return (
@@ -67,14 +101,25 @@ export default {
           value[this.keys] == item[this.keys]
         );
       });
+      //非多选模式下只能选中一个
+      if (this.multiple == false) {
+        if (this.exist) {
+          return;
+        }
+      }
+
       if (!has) {
         item.name = item[this.value];
         this.screen.selectdata.push(item);
-         this.$emit("handelclick",item);
-          this.screen.$emit("change",this.screen.selectdata)
-      };
-     
-     
+        this.$emit("handelclick", item);
+        this.screen.$emit("change", this.screen.selectdata);
+        this.getcopyData();
+      }
+    },
+    selectAll() {
+      this.data.forEach(item => {
+        this.selectItem(item);
+      });
     }
   }
 };

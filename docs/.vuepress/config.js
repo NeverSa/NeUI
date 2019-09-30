@@ -21,6 +21,7 @@ module.exports = {
                     ['/blog/tree.md', 'Tree 树形控件'],
                     ['/blog/dropdown.md', 'dropdown 下拉'],
                     ['/blog/screen.md', 'screen 筛选器'],
+                    ['/blog/datepicker.md', 'datepicker 时间选择器'],
                 ]
             },
             {
