@@ -1,7 +1,14 @@
 <template>
   <div class="ne-date_picker">
     <ne-input :label="label" v-model="datavalue" @handlefocus="handlefocus" />
-    <div class="ne-date_pannal" v-show="showpannel">
+    <div
+      class="ne-date_pannal"
+      v-show="showpannel"
+      tabindex="0"
+      ref="date_pannal"
+      @blur="handleBlurPanner"
+      @focus="handlefocusPanner"
+    >
       <!-- 切换月份 -->
       <div class="prew_option" v-if="!showYear">
         <i class="iconfont ne-arrow_left" @click="prevMonthPreview"></i>
@@ -35,6 +42,11 @@
           </div>
         </li>
       </ul>
+      <div class="time_list">
+        <div class="time_list_item"></div>
+        <div class="time_list_item"></div>
+        <div class="time_list_item"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -53,7 +65,7 @@ export default {
   },
   model: {
     prop: "value",
-    event: "select"
+    event: "select" 
   },
   data() {
     let now = new Date();
@@ -184,10 +196,17 @@ export default {
     },
     handlefocus() {
       this.showpannel = true;
+      setTimeout(() => {
+        this.$refs.date_pannal.focus();
+      }, 0);
     },
     close() {
       this.$emit("close", false);
     },
+    handleBlurPanner() {
+      this.showpannel = false;
+    },
+    handlefocusPanner() {},
     //选中日期
     selectDay(item) {
       if (!item.currentMonth) {
@@ -213,6 +232,7 @@ export default {
     z-index: 9;
     background: #fff;
     margin-top: 5px;
+    outline: none;
     .prew_option {
       display: flex;
       justify-content: space-between;
