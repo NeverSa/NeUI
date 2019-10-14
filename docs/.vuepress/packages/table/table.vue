@@ -19,7 +19,6 @@
     <!--右侧固定列补丁-->
     <div class="el-table__fixed-right-patch"></div>
     <!--列宽调整代理-->
-    <div class="el-table__column-resize-proxy"></div>
   </div>
 </template>
 
@@ -96,6 +95,10 @@ export default {
     th {
       border: none;
       background: #fff;
+    }
+    td{
+      text-align: center;
+      padding: 5px;
     }
   }
   .ne-table__header-wrapper {

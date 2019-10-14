@@ -21,7 +21,7 @@
           >
             <span ref="draggAbleDom" :class="[dragClasses,dragOverClass]" class="node-title">
               <span>{{nodeData.title}}</span>
-              <i v-if="root.optionRedule" class="iconfont ne-ullist ne-tree_option">
+              <i v-if="root.optionRedule" >
                 <tree-option :render="root.optionRedule" :node="nodeData"></tree-option>
               </i>
             </span>

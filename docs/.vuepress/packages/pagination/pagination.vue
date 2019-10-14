@@ -137,6 +137,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin: 20px;
   .pagination_prew {
     width: 30px;
     height: 30px;
@@ -167,6 +168,7 @@ export default {
       height: 30px;
       text-align: center;
       position: relative;
+      line-height: 30px;
       .active_text {
         position: absolute;
         width: 100%;

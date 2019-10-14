@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="ne-form_item">
     <slot></slot>
-    <!-- <div v-if="isShowMes" class="message">{{message}}</div> -->
   </div>
 </template>
 <script>
@@ -100,5 +99,8 @@ export default {
   .message {
     font-size: 12px;
     color: red;
+  }
+  .ne-form_item{
+    margin-bottom: 10px;
   }
 </style>

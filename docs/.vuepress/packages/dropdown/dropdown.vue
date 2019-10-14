@@ -25,7 +25,7 @@ export default {
     };
   },
   props: {
-    placeholder: { type: String, default: "下拉菜单" },
+    placeholder: { type: String, default: "" },
     trigger: { type: String, default: "click" },
     selectValue: { type: [String, Number] },
     optionKey: { type: String, default: "value" }

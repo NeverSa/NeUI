@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{'width':width}" class="ne-form">
     <slot></slot>
   </div>
 </template>
@@ -10,6 +10,10 @@ export default {
     return { fields: [] };
   },
   props: {
+    width: {
+      type: String,
+      default: "auto"
+    },
     model: { type: Object },
     rules: { type: Object }
   },
@@ -18,21 +22,22 @@ export default {
   },
   methods: {
     resetFields() {
-      this.fields.forEach(field => field.resetField())
+      this.fields.forEach(field => field.resetField());
     },
     validate(cb) {
       return new Promise(resolve => {
-        let valid = true, count = 0;
+        let valid = true,
+          count = 0;
         this.fields.forEach(field => {
-          field.validate('', error => {
+          field.validate("", error => {
             if (error) valid = false;
             if (++count === this.fields.length) {
               resolve(valid);
-              if (typeof cb === 'function') cb(valid);
+              if (typeof cb === "function") cb(valid);
             }
-          })
-        })
-      })
+          });
+        });
+      });
     }
   },
 
@@ -46,3 +51,8 @@ export default {
   }
 };
 </script>
+<style lang="less" scoped>
+.ne-form {
+  margin: 0 auto;
+}
+</style>
