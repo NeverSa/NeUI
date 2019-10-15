@@ -1,5 +1,6 @@
 <template>
   <div class="ne-form_item">
+    <span v-if="label!==''">{{label}}：</span>
     <slot></slot>
   </div>
 </template>

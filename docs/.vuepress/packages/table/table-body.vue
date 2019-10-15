@@ -1,104 +1,157 @@
 <template>
-  <table cellspacing="0" cellpadding="0" border="0">
+  <table cellspacing="0" cellpadding="0" border="0" :style="styleObject">
     <colgroup>
-      <col v-if="table.showCheck" />
-      <col v-for="(column, index) in columns" />
+      <col v-for="(column, index) in columns" :width="setCellWidth(column)" />
     </colgroup>
-    <tbody>
+    <tbody :class="[prefixCls + '-tbody']">
       <template v-for="(row, index) in data">
-        <table-tr :row="row" class="table-tr">
+        <table-tr
+          :draggable="draggable"
+          :row="row"
+          :key="rowKey ? row._rowKey : index"
+          :prefix-cls="prefixCls"
+            :checked="rowChecked(row._index)"
+          @mouseenter.native.stop="handleMouseIn(row._index)"
+          @mouseleave.native.stop="handleMouseOut(row._index)"
+          @click.native="clickCurrentRow(row._index)"
+          @dblclick.native.stop="dblclickCurrentRow(row._index)"
+        >
           <td
-            v-if="table.showCheck"
-            class="td_index"
-            style="width:20px"
-            :class="{'check-show':hasOneCheck}"
+            v-for="(column, colIndex) in columns"
+            :class="alignCls(column, row)"
+            v-bind="getSpan(row, column, index, colIndex)"
+            v-if="showWithSpan(row, column, index, colIndex)"
           >
-            <span class="td-index_text">{{index+1}}</span>
-            <span class="td-index_checkbox">
-              <ne-checkbox v-model="row.check" />
-            </span>
-          </td>
-          <td v-for="column in columns" @click="handeRowClick(row)">
-            <table-cell :row="row" :column="column"></table-cell>
+            <table-cell
+              :fixed="fixed"
+              :prefix-cls="prefixCls"
+              :row="row"
+              :key="column._columnKey"
+              :column="column"
+              :natural-index="index"
+              :index="row._index"
+              :checkeds="rowChecked(row._index)"
+              :disabled="rowDisabled(row._index)"
+              :expanded="rowExpanded(row._index)"
+            ></table-cell>
           </td>
         </table-tr>
+        <tr v-if="rowExpanded(row._index)" :class="{[prefixCls + '-expanded-hidden']: fixed}">
+          <td :colspan="columns.length" :class="prefixCls + '-expanded-cell'">
+            <Expand
+              :key="rowKey ? row._rowKey : index"
+              :row="row"
+              :render="expandRender"
+              :index="row._index"
+            ></Expand>
+          </td>
+        </tr>
       </template>
     </tbody>
   </table>
 </template>
 <script>
+// todo :key="row"
 import TableTr from "./table-tr.vue";
 import TableCell from "./cell.vue";
+import Expand from "./expand.js";
+import Mixin from "./mixin";
 
 export default {
   name: "TableBody",
-  components: { TableCell, TableTr },
-  props: {
-    columns: Array,
-    data: Array // rebuildData
-  },
-  inject: ["table"],
-  computed: {
-    hasOneCheck() {
-      return this.data.some(item => {
-        return item.check == true;
-      });
+  mixins: [Mixin],
+  components: { TableCell, Expand, TableTr },
 
+  props: {
+    prefixCls: String,
+    styleObject: Object,
+    columns: Array,
+    data: Array, // rebuildData
+    objData: Object,
+    columnsWidth: Object,
+    fixed: {
+      type: [Boolean, String],
+      default: false
+    },
+    draggable: {
+      type: Boolean,
+      default: false
+    },
+    rowKey: {
+      type: Boolean,
+      default: false
     }
   },
-  watch:{
-    hasOneCheck(val){
-         this.table.hasCheck=val;
+  computed: {
+    expandRender() {
+      let render = function() {
+        return "";
+      };
+      for (let i = 0; i < this.columns.length; i++) {
+        const column = this.columns[i];
+        if (column.type && column.type === "expand") {
+          if (column.render) render = column.render;
+        }
+      }
+      return render;
     }
   },
   methods: {
-    handeRowClick(row) {
-      if (row.check) {
-        row.check = false;
+    
+    rowChecked(_index) {
+      return this.objData[_index] && this.objData[_index]._isChecked;
+    },
+    rowDisabled(_index) {
+      return this.objData[_index] && this.objData[_index]._isDisabled;
+    },
+    rowExpanded(_index) {
+      return this.objData[_index] && this.objData[_index]._isExpanded;
+    },
+    handleMouseIn(_index) {
+      this.$parent.handleMouseIn(_index);
+    },
+    handleMouseOut(_index) {
+      this.$parent.handleMouseOut(_index);
+    },
+    clickCurrentRow(_index) {
+      this.$parent.clickCurrentRow(_index);
+    },
+    dblclickCurrentRow(_index) {
+      this.$parent.dblclickCurrentRow(_index);
+    },
+    getSpan(row, column, rowIndex, columnIndex) {
+      const fn = this.$parent.spanMethod;
+      if (typeof fn === "function") {
+        const result = fn({
+          row,
+          column,
+          rowIndex,
+          columnIndex
+        });
+        let rowspan = 1;
+        let colspan = 1;
+        if (Array.isArray(result)) {
+          rowspan = result[0];
+          colspan = result[1];
+        } else if (typeof result === "object") {
+          rowspan = result.rowspan;
+          colspan = result.colspan;
+        }
+        return {
+          rowspan,
+          colspan
+        };
       } else {
-        this.$set(row, "check", true);
-      };
-      this.table.$emit('row-click', row)
+        return {};
+      }
+    },
+    showWithSpan(row, column, rowIndex, columnIndex) {
+      const result = this.getSpan(row, column, rowIndex, columnIndex);
+      return !(
+        ("rowspan" in result && result.rowspan === 0) ||
+        ("colspan" in result && result.colspan === 0)
+      );
     }
   }
 };
 </script>
-<style lang="less" scoped>
-.td_index {
-  position: relative;
-  .td-index_text,
-  .td-index_checkbox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    transform: translate3d(-50%, -50%, 0);
-    transition: all 0.3s ease;
-  }
-  .td-index_text {
-    opacity: 1;
-  }
-  .td-index_checkbox {
-    opacity: 0;
-  }
-}
-.check-show {
-  .td-index_text {
-    opacity: 0;
-  }
-  .td-index_checkbox {
-    opacity: 1;
-  }
-}
-.table-tr {
-  cursor: pointer;
-  &:hover {
-    .td-index_text {
-      opacity: 0;
-    }
-    .td-index_checkbox {
-      opacity: 1;
-    }
-  }
-}
-</style>

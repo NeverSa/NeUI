@@ -13,6 +13,20 @@
       "unicode_decimal": 58948
     },
     {
+      "icon_id": "59346",
+      "name": "error",
+      "font_class": "error",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "587167",
+      "name": "warning-o",
+      "font_class": "warning",
+      "unicode": "e835",
+      "unicode_decimal": 59445
+    },
+    {
       "icon_id": "637795",
       "name": "搜素",
       "font_class": "search",
@@ -46,6 +60,13 @@
       "font_class": "close",
       "unicode": "e647",
       "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "1226477",
+      "name": "success",
+      "font_class": "success",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
     },
     {
       "icon_id": "1366140",

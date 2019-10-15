@@ -12,13 +12,14 @@ import Message from './message/index.js';
 import Tree from './tree/index.js';
 import "./icon/iconfont.css"
 import Dialog from './dialog/index.js';
-import { NeTable,NeTabBar} from './table/index.js';
-import { NeForm, NeFormItem ,Meinput} from './form/index.js';
+import { NeTable, NeTabBar } from './table/index.js';
+import { NeForm, NeFormItem, Meinput } from './form/index.js';
 import NePagiNation from './pagination/index.js';
-import { NeDropdown,NeDropdownOption} from './dropdown/index.js';
-import {NeScreen,NeScreenOption} from './screen/index.js';
+import { NeDropdown, NeDropdownOption } from './dropdown/index.js';
+import { NeScreen, NeScreenOption } from './screen/index.js';
 import NeDatePicker from './date-picker/index.js';
-const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
+import NeProgressbar from './progressbar/index.js';
+const components = [Button, Dialog, Radio, RadioGroup, NeTable, Checkbox, CheckboxGroup, Input, TabButton, TabButtonGroup, Select, Option, Tree,
   NeTabBar,
   NeForm,
   NeFormItem,
@@ -28,7 +29,8 @@ const components = [Button, Dialog, Radio, RadioGroup, NeTable,  Checkbox, Check
   NeDropdownOption,
   NeScreen,
   NeScreenOption,
-  NeDatePicker
+  NeDatePicker,
+  NeProgressbar
 ];
 const install = function (Vue, opts = {}) {
   components.forEach(component => {
@@ -39,7 +41,6 @@ const install = function (Vue, opts = {}) {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-
 export default {
   Button,
   Radio,
@@ -65,5 +66,6 @@ export default {
   NeScreen,
   NeScreenOption,
   NeDatePicker,
+  NeProgressbar,
   install
 };

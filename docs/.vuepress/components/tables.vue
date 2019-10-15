@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ne-table :columns="columns" :data="data" :show-check="true" @row-click="rowClick">
+    <ne-table :columns="columns" :data="data" border>
       <div slot="common">
         <ne-tab-bar lable="查找" icon="ne-bianji"  @click="test()"/>
         <ne-tab-bar lable="导出" icon="ne-bianji"  @click="test()"/>

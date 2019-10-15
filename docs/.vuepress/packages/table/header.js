@@ -7,7 +7,6 @@ export default {
         index: Number
     },
     render: (h, ctx) => {
-        debugger
         const params = {
             column: ctx.props.column,
             index: ctx.props.index

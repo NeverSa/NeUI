@@ -24,7 +24,7 @@ export default {
   name: "NeTabButtonGroup",
   componentName: "NeTabButtonGroup",
   props: {
-    select:String || Number
+    select:""
   },
   model:{
     prop: 'select',

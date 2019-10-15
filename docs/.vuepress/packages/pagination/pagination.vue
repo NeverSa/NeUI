@@ -36,13 +36,16 @@
         <span class="active_text" v-show="item === current">{{ item }}</span>
       </li>
     </ul>
-    <span class="pagination_prew" @click.stop="handleClick({ type: 'next' })" :class="{'is_disabled':!canNext}">
+    <span
+      class="pagination_prew"
+      @click.stop="handleClick({ type: 'next' })"
+      :class="{'is_disabled':!canNext}"
+    >
       <i class="iconfont ne-arrow_right"></i>
     </span>
   </div>
 </template>
 <script>
-const prefixCls = "ivu-page";
 export default {
   name: "NePagination",
   props: {
@@ -148,9 +151,9 @@ export default {
     text-align: center;
     cursor: pointer;
   }
-  .is_disabled{
-      cursor: not-allowed;
-      color: #f1f1f1
+  .is_disabled {
+    cursor: not-allowed;
+    color: #f1f1f1;
   }
   .pagination-inner {
     list-style: none;

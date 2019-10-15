@@ -1,5 +1,37 @@
 <template>
-  <div ref="cell">
+  <div :class="classes"  ref="cell"  >
+    <template v-if="renderType === 'selection'">
+       <span v-if="!showCkeckBox">{{naturalIndex+1}}</span> 
+      <ne-checkbox v-if="showCkeckBox" v-model="checked" @select="toggleSelect" :disabled="disabled"></ne-checkbox>
+    </template>
+    <template v-if="renderType === 'html'">
+      <span v-html="row[column.key]"></span>
+    </template>
+    <template v-if="renderType === 'normal'">
+      <template v-if="column.tooltip">
+        <Tooltip
+          transfer
+          :content="row[column.key]"
+          :theme="tableRoot.tooltipTheme"
+          :disabled="!showTooltip"
+          :max-width="300"
+          class="ivu-table-cell-tooltip"
+        >
+          <span
+            ref="content"
+            @mouseenter="handleTooltipIn"
+            @mouseleave="handleTooltipOut"
+            class="ivu-table-cell-tooltip-content"
+          >{{ row[column.key] }}</span>
+        </Tooltip>
+      </template>
+      <span v-else>{{row[column.key]}}</span>
+    </template>
+    <template v-if="renderType === 'expand' && !row._disableExpand">
+      <div :class="expandCls" @click="toggleExpand">
+        <Icon type="ios-arrow-forward"></Icon>
+      </div>
+    </template>
     <table-expand
       v-if="renderType === 'render'"
       :row="row"
@@ -7,22 +39,22 @@
       :index="index"
       :render="column.render"
     ></table-expand>
-    <span v-if="renderType !== 'render'">{{row[column.key]}}</span>
+    <table-slot v-if="renderType === 'slot'" :row="row" :column="column" :index="index"></table-slot>
   </div>
 </template>
 <script>
-import TableSlot from "./slot";
 import TableExpand from "./expand";
+import TableSlot from "./slot";
 export default {
   name: "TableCell",
-  components: { TableSlot, TableExpand },
+  components: { TableExpand, TableSlot },
   props: {
+      checkeds:Boolean,
     prefixCls: String,
     row: Object,
-    column: "",
+    column: Object,
     naturalIndex: Number, // index of rebuildData
     index: Number, // _index of data
-    checked: Boolean,
     disabled: Boolean,
     expanded: Boolean,
     fixed: {
@@ -30,21 +62,26 @@ export default {
       default: false
     }
   },
+  inject: ["tableRoot"],
   data() {
     return {
-      _renderType: "",
-      get renderType() {
-        return this._renderType;
-      },
-      set renderType(value) {
-        this._renderType = value;
-      },
+      checked: false,
+      renderType: "",
       uid: -1,
       context: this.$parent.$parent.$parent.currentContext,
-      showTooltip: false // 鼠标滑过overflow文本时，再检查是否需要显示
+      showTooltip: false, // 鼠标滑过overflow文本时，再检查是否需要显示,
+      isHover:false,
     };
   },
   computed: {
+      showCkeckBox(){
+          if(this.tableRoot.rowHover){
+              return true
+          }else{
+            return this.tableRoot.checkArr.length>0
+          }
+         
+      },
     classes() {
       return [
         `${this.prefixCls}-cell`,
@@ -70,12 +107,20 @@ export default {
     }
   },
   methods: {
-    toggleSelect() {
-      this.$parent.$parent.$parent.toggleSelect(this.index);
+    toggleSelect(val) {
+      if (val) {
+        this.tableRoot.checkArr.push(this.index);
+      } else {
+        this.tableRoot.checkArr = this.tableRoot.checkArr.filter(item => {
+          return item !== this.index;
+        });
+      }
+     
+      this.tableRoot.toggleSelect(this.index);
     },
-    toggleExpand() {
-      this.$parent.$parent.$parent.toggleExpand(this.index);
-    },
+    // toggleExpand() {
+    //   this.$parent.$parent.$parent.toggleExpand(this.index);
+    // },
     handleClick() {
       // 放置 Checkbox 冒泡
     },
