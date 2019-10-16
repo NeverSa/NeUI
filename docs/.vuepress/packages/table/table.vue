@@ -1,10 +1,15 @@
 <template>
-    <div  class="ne-table" :style="styles">
+    <div  class="ne-table" >
       <div class="ne-table_bar">
-      <slot name="common" v-if="checkArr.length==0"></slot>
-      <slot name="check" v-if="checkArr.length>0"></slot>
+          <div>
+             <slot name="left"></slot> 
+          </div>
+        <div><slot name="common" v-if="checkArr.length==0"></slot>
+      <slot name="check" v-if="checkArr.length>0"></slot></div>
+      
      </div>
-        <div :class="{'ne-table-border':border}">
+     <div :class="wrapClasses" :style="styles">
+        <div :class="classes">
             <div :class="[prefixCls + '-title']" v-if="showSlotHeader" ref="title"><slot name="header"></slot></div>
             <div  class="ne-table-header" v-if="showHeader" ref="header" @mousewheel="handleMouseWheel">
                 <table-head
@@ -44,7 +49,7 @@
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                         <tr>
-                            <td :style="{'height':bodyStyle.height,'width':`${this.headerWidth}px`}">
+                            <td style="text-align: center;" :style="{'height':bodyStyle.height,'width':`${this.headerWidth}px`,}">
                                 <span v-html="localeNoDataText" v-if="!data || data.length === 0"></span>
                                 <span v-html="localeNoFilteredDataText" v-else></span>
                             </td>
@@ -127,6 +132,7 @@
             <div :class="[prefixCls + '-fixed-right-header']" :style="fixedRightHeaderStyle" v-if="isRightFixed"></div>
             <div :class="[prefixCls + '-footer']" v-if="showSlotFooter" ref="footer"><slot name="footer"></slot></div>
         </div>
+        </div>
         <div class="ivu-table-resize-line" v-show="showResizeLine" ref="resizeLine"></div>
         <div v-if="loading">
             <slot name="loading"></slot>
@@ -145,7 +151,7 @@
     import elementResizeDetectorMaker from 'element-resize-detector';
     import { getAllColumns, convertToRows, convertColumnOrder, getRandomStr } from './util';
 
-    const prefixCls = 'ivu-table';
+    const prefixCls = 'ne-table';
 
     let rowKey = 1;
     let columnKey = 1;
@@ -215,7 +221,7 @@
             context: {
                 type: Object
             },
-            noDataText: {
+            emptyText: {
                 type: String
             },
             noFilteredDataText: {
@@ -293,15 +299,15 @@
         },
         computed: {
             localeNoDataText () {
-                if (this.noDataText === undefined) {
-                    return 'i.table.noDataText';
+                if (this.emptyText === undefined) {
+                    return '暂无数据';
                 } else {
-                    return this.noDataText;
+                    return this.emptyText;
                 }
             },
             localeNoFilteredDataText () {
                 if (this.noFilteredDataText === undefined) {
-                    return 'i.table.noFilteredDataText';
+                    return '暂无筛选结果';
                 } else {
                     return this.noFilteredDataText;
                 }
@@ -344,20 +350,14 @@
                     }
                 ];
             },
-            styles () {
+              styles () {
                 let style = {};
-                let summaryHeight = 0;
-                if (this.showSummary) {
-                    if (this.size === 'small') summaryHeight = 40;
-                    else if (this.size === 'large') summaryHeight = 60;
-                    else summaryHeight = 48;
-                }
                 if (this.height) {
-                    let height = parseInt(this.height) + summaryHeight;
+                    const height = parseInt(this.height);
                     style.height = `${height}px`;
                 }
                 if (this.maxHeight) {
-                    const maxHeight = parseInt(this.maxHeight) + summaryHeight;
+                    const maxHeight = parseInt(this.maxHeight);
                     style.maxHeight = `${maxHeight}px`;
                 }
                 if (this.width) style.width = `${this.width}px`;
@@ -1150,14 +1150,24 @@
 <style lang="less" >
 table{
   border-collapse:collapse;
+  margin: 0px;
 }
  .ne-table_bar{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
   }
   .ne-table{
+    width: inherit;
+    height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    box-sizing: border-box;
+    position: relative;
   .ne-table-header{
+    overflow: hidden;
       tr{
         th{
           padding: 10px 0px
@@ -1165,6 +1175,7 @@ table{
       }
     }
     .ne-table-body{
+      text-align: center;
       tr{
         td{
           text-align: center;
@@ -1183,6 +1194,66 @@ table{
         border: 1px solid #efefef;
         cursor: pointer;
       }
+    }
+    .ne-table-overflowY{
+      overflow-y: scroll;
+    }
+     .ne-table-overflowX{
+      overflow-x: scroll;
+    }
+    .ne-table-fixed{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+    }
+    .ne-table-fixed-header{
+      overflow: hidden;
+      background: #fff;
+    }
+     .ne-table-fixed-body{
+         overflow: hidden;
+    position: relative;
+    z-index: 3;
+    background: #fff;
+    }
+      .ne-table-fixed-right{
+           top: 0;
+    left: auto;
+    right: 0;
+    box-shadow: -2px 0 6px -2px rgba(0,0,0,.2);
+    }
+    .ne-table-with-fixed-top{
+
+    }
+    .ne-table-hidden{
+      visibility: hidden;
+    }
+    .ne-table-cell{
+      padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+    }
+    .ne-table-sort{
+        display: inline-block;
+    width:12px;
+    margin-left: 4px;
+    margin-top: -1px;
+    vertical-align: middle;
+
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    .iconfont{
+            font-size: 12px;
+            display: inline-block;
+            color:#828282;
+            transform: scale(0.8) 
+    }
     }
   }
  
