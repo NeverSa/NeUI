@@ -2,7 +2,7 @@
   <div class="ne-select-item" @click="handleClick" :class="{
     'is-select':isSelect
   }">
-    <slot>{{label}}</slot>
+    <slot>{{copylabel}}</slot>
   </div>
 </template>
 
@@ -11,13 +11,14 @@
 export default {
   name: "NeOption",
   componentName: "NeOption",
-
   data() {
-    return {};
+    return {
+      copylabel:""
+    };
   },
   props: {
-    value: { type: [Object, String, Number], required: true },
-    label: { type: String }
+    value: "",
+    label: ""
   },
   inject: ["neSelect"],
   methods: {
@@ -44,7 +45,10 @@ export default {
     }
   },
 
-  created() {},
+  created() {
+  
+    console.log(this.label)
+  },
   watch: {
     ["neSelect.value"]: {
       handler(newValue) {
@@ -56,6 +60,12 @@ export default {
           });
       
         }
+      },
+      immediate: true
+    },
+    "label":{
+       handler(newValue) {
+       this.copylabel=newValue
       },
       immediate: true
     }

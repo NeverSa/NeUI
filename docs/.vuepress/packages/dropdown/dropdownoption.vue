@@ -1,7 +1,8 @@
 <template>
   <div :class="[
       'dorpdown-option',
-    ]" @mousedown="handleClick">
+    ]" @mousedown="handleClick"
+    >
     <slot>{{ label }}</slot>
   </div>
 </template>
@@ -31,6 +32,7 @@ export default {
   computed: {},
   mounted() {},
   methods: {
+   
     handleClick() {
       this.Dropdown.$emit("handleClick", this.label);
     }

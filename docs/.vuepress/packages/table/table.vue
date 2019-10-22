@@ -1159,7 +1159,7 @@ table{
     padding-bottom: 10px;
   }
   .ne-table{
-    width: inherit;
+    width:  100%;
     height: 100%;
     max-width: 100%;
     overflow: hidden;

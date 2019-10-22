@@ -30,7 +30,7 @@ export default {
   props: {
     placeholder: { type: String, default: "请选择" },
     optionKey: { type: String, default: "value" },
-    value: { type: [String, Object, Number, Array] },
+    value: "",
     multiple: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false }
   },
@@ -41,7 +41,8 @@ export default {
   data() {
     return {
       isOpen: false,
-      selectItems: []
+      selectItems: [],
+    
     };
   },
    provide() {

@@ -2,7 +2,7 @@
   <div
     :class="['ne-dropdown', { 'is-hover': trigger === 'hover' && isOpen }]"
     tabindex="0"
-    @click.stop="isOpen = !isOpen"
+    @click.stop="nodeClick();isOpen = !isOpen"
     @blur="trigger !== 'hover' && (isOpen = false)"
   >
     <div class="'dropdown__label'">
@@ -50,7 +50,9 @@ export default {
   
   },
   methods: {
- 
+ nodeClick(){
+   this.$emit("click")
+ },
   }
 };
 </script>

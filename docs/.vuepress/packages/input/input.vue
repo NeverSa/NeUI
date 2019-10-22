@@ -26,7 +26,7 @@ export default {
   props: {
     label: { type: String, default: "" },
     type: { type: String, default: "text" },
-    value: { type: String, default: "" },
+    value: "",
     disabled: {
       type: Boolean,
       default: false,
